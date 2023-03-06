@@ -16,15 +16,12 @@ function getDivs(){ //getting the divs
 }
 
 function getNumber(){  //getting the number of squares from the user
-    getDivs(); // for the default numbers
-    draw();
 
     const NoOfGridsPara = document.querySelector('p');
     const rangeBar = document.querySelector('.range');
     rangeBar.addEventListener('change',() => {
         NoOfGrids = rangeBar.value; 
-        getDivs();
-        draw();
+       
     });
     rangeBar.addEventListener('input',() => {
         NoOfGridsPara.textContent = rangeBar.value + ' x ' + rangeBar.value;
@@ -35,20 +32,52 @@ function draw(){  //pencil
     const boxes = document.querySelectorAll('.grid');
     boxes.forEach(box => {
         box.addEventListener('mouseover',() =>{
-            box.classList.add('draw');
+            box.style.backgroundColor = 'black';
         });
-    })
-}
-
-function clearScreen(){  // clear button
-    const clearButton = document.querySelector('.clearBorder')
-    clearButton.addEventListener('click',()=>{
-        getDivs();
-        draw();
     });
 }
 
+function drawRainbow(){
+    const boxes = document.querySelectorAll('.grid');
+    boxes.forEach(box => {
+        box.addEventListener('mouseover',() =>{
+            box.style.backgroundColor = getRandomRGB();
+        });
+    });
+}
 
+function clearScreen(){  // clear button
+    const clearButton = document.querySelector('.clearScreen')
+    clearButton.addEventListener('click',()=>{
+        getDivs();
+    });
+}
+
+function getRandomRGB(){
+    const values = [];
+    for(let i = 0; i<3;i++){
+        values.push(Math.floor(Math.random()*255))
+    }
+
+    return `rgb(${values[0]},${values[1]},${values[2]})`;
+}
+
+function rgbPencil(){
+    const randomRGBbutton = document.querySelector('.randomRGB');
+    randomRGBbutton.addEventListener('click',()=>{
+        drawRainbow();
+    });
+}
+
+function pencil(){
+    const pencilButton = document.querySelector('.pencil');
+    pencilButton.addEventListener('click',() => {
+        draw();
+    });
+}
 let NoOfGrids = 20; // default number
-clearScreen()
 getNumber();
+getDivs();
+pencil();
+rgbPencil();
+clearScreen();
