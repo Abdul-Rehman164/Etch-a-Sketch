@@ -8,7 +8,9 @@ function getDivs(){
         div.classList.add('grid');
         sketchPad.appendChild(div);
     }
+    sketchPad.setAttribute('style',`grid-template-columns:repeat(${NoOfGrids},1fr); grid-template-rows:repeat(${NoOfGrids},1fr);`);
 
 }
+
 
 getDivs();
