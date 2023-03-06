@@ -1,6 +1,6 @@
 const sketchPad = document.querySelector('.container');
 
-function getDivs(){
+function getDivs(){ //getting the divs
 
     while(sketchPad.firstChild){
         sketchPad.removeChild(sketchPad.firstChild)
@@ -15,10 +15,10 @@ function getDivs(){
 
 }
 
-function getNumber(){
+function getNumber(){  //getting the number of squares from the user
     getDivs(); // for the default numbers
     draw();
-    
+
     const NoOfGridsPara = document.querySelector('p');
     const rangeBar = document.querySelector('.range');
     rangeBar.addEventListener('change',() => {
@@ -31,7 +31,7 @@ function getNumber(){
     });
 }
 
-function draw(){
+function draw(){  //pencil
     const boxes = document.querySelectorAll('.grid');
     boxes.forEach(box => {
         box.addEventListener('mouseover',() =>{
@@ -40,5 +40,15 @@ function draw(){
     })
 }
 
-let NoOfGrids = 20;
+function clearScreen(){  // clear button
+    const clearButton = document.querySelector('.clearBorder')
+    clearButton.addEventListener('click',()=>{
+        getDivs();
+        draw();
+    });
+}
+
+
+let NoOfGrids = 20; // default number
+clearScreen()
 getNumber();
