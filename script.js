@@ -1,8 +1,11 @@
 const sketchPad = document.querySelector('.container');
 
 function getDivs(){
-    const NoOfGrids = Number(prompt('Enter a number less than 100'));
-    if (isNaN(NoOfGrids)) getDivs();
+
+    while(sketchPad.firstChild){
+        sketchPad.removeChild(sketchPad.firstChild)
+    }
+
     for (let i = 0;i < (NoOfGrids*NoOfGrids);i++){ //noOfGrids * noOfGrids one for row and one for column
         const div = document.createElement('div');
         div.classList.add('grid');
@@ -12,5 +15,19 @@ function getDivs(){
 
 }
 
+function getNumber(){
+    const NoOfGridsPara = document.querySelector('p');
+    const rangeBar = document.querySelector('.range');
+    rangeBar.addEventListener('change',() => {
+        NoOfGrids = rangeBar.value; 
+        getDivs();
+    });
+    rangeBar.addEventListener('input',() => {
+        NoOfGridsPara.textContent = rangeBar.value + ' x ' + rangeBar.value;
+    });
+}
 
-getDivs();
+
+let NoOfGrids = 20;
+getDivs() // for the default numbers
+getNumber();
