@@ -21,6 +21,7 @@ function getNumber(){  //getting the number of squares from the user
     const rangeBar = document.querySelector('.range');
     rangeBar.addEventListener('change',() => {
         NoOfGrids = rangeBar.value; 
+        getDivs();
        
     });
     rangeBar.addEventListener('input',() => {
@@ -28,30 +29,6 @@ function getNumber(){  //getting the number of squares from the user
     });
 }
 
-function draw(){  //pencil
-    const boxes = document.querySelectorAll('.grid');
-    boxes.forEach(box => {
-        box.addEventListener('mouseover',() =>{
-            box.style.backgroundColor = 'black';
-        });
-    });
-}
-
-function drawRainbow(){
-    const boxes = document.querySelectorAll('.grid');
-    boxes.forEach(box => {
-        box.addEventListener('mouseover',() =>{
-            box.style.backgroundColor = getRandomRGB();
-        });
-    });
-}
-
-function clearScreen(){  // clear button
-    const clearButton = document.querySelector('.clearScreen')
-    clearButton.addEventListener('click',()=>{
-        getDivs();
-    });
-}
 
 function getRandomRGB(){
     const values = [];
@@ -62,22 +39,49 @@ function getRandomRGB(){
     return `rgb(${values[0]},${values[1]},${values[2]})`;
 }
 
-function rgbPencil(){
-    const randomRGBbutton = document.querySelector('.randomRGB');
-    randomRGBbutton.addEventListener('click',()=>{
-        drawRainbow();
-    });
+
+function draw(color){
+    const boxes = document.querySelectorAll('.grid');
+    if(typeof color === 'function'){
+        boxes.forEach(box => {
+            box.addEventListener('mouseover',() =>{
+                box.style.backgroundColor = color();
+            });
+        });
+    }else{
+        boxes.forEach(box => {
+            box.addEventListener('mouseover',() =>{
+                box.style.backgroundColor = color;
+            });
+        });
+    }
+
 }
 
-function pencil(){
-    const pencilButton = document.querySelector('.pencil');
-    pencilButton.addEventListener('click',() => {
-        draw();
+
+//Rgb pencil
+const randomRGBbutton = document.querySelector('.randomRGB');
+randomRGBbutton.addEventListener('click',()=>{
+        draw(getRandomRGB);
     });
-}
+
+
+// pencil
+const pencilButton = document.querySelector('.pencil');
+pencilButton.addEventListener('click',() => {
+        draw('black');
+    });
+
+
+// To Clear the Screen
+const clearButton = document.querySelector('.clearScreen')
+clearButton.addEventListener('click',()=>{
+        getDivs();
+    });
+
+    
+
+
 let NoOfGrids = 20; // default number
+getDivs(); //default genrated divs
 getNumber();
-getDivs();
-pencil();
-rgbPencil();
-clearScreen();
