@@ -8,14 +8,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <input class="range" type='range' min=0 max =64  value = 20>
-        <p>20 x 20</p>
+    <section class="sidebar">
+    <div class="colorPenContainer">
+        <input type="color" id="colorPen" class="colorPen">
+        <span>Color Pen</span>
     </div>
-    <button class="clearScreen">Clear</button>
+    <div class="buttons">
     <button class="randomRGB">Rainbow</button>
-    <button class="pencil">Pencil</button>
+    <button class="eraser">Eraser</button>
+    <button class="clearScreen">Clear</button>
     <button class="toggleBorder">Toggle Grid</button>
+</div>
+<div class="rangeContainer">
+    <input class="range" type='range' min=0 max =64  value = 20>
+    <p>20 x 20</p>
+</div>
+</section>
     <div class="container"></div>
     <script src="script.js"></script>
 </body>

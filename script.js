@@ -33,8 +33,8 @@ function getDivs(){ //getting the divs
             }
         });
     });
-    if(randomRGBbutton.style.backgroundColor === 'skyblue') draw(getRandomRGB);
-    if(pencilButton.style.backgroundColor === 'skyblue') draw('black');
+    if(randomRGBbutton.style.backgroundColor === 'rgb(62, 166, 255)') draw(getRandomRGB);
+    if(eraserButton.style.backgroundColor === 'rgb(62, 166, 255)') draw('white');
 
 }   
 
@@ -82,22 +82,38 @@ function draw(color){
 }
 
 
+
 //Rgb pencil
 const randomRGBbutton = document.querySelector('.randomRGB');
 randomRGBbutton.addEventListener('click',()=>{
-        draw(getRandomRGB);
-        randomRGBbutton.style.backgroundColor = 'skyblue';
-        pencilButton.style.backgroundColor = 'white';
-    });
+    draw(getRandomRGB);
+    randomRGBbutton.style.backgroundColor = 'rgb(62, 166, 255)';
+    eraserButton.style.color = 'rgb(62, 166, 255)';
+    randomRGBbutton.style.color = 'black';
+    eraserButton.style.backgroundColor = '#272727';
+});
+
 
 
 // pencil
-const pencilButton = document.querySelector('.pencil');
-pencilButton.addEventListener('click',() => {
-        draw('black');
-        pencilButton.style.backgroundColor = 'skyblue';
-        randomRGBbutton.style.backgroundColor = 'white';
-    });
+const eraserButton = document.querySelector('.eraser');
+eraserButton.addEventListener('click',() => {
+    draw('white');
+    eraserButton.style.backgroundColor = 'rgb(62, 166, 255)';
+    eraserButton.style.color = 'black';
+    randomRGBbutton.style.color = 'rgb(62, 166, 255)';
+    randomRGBbutton.style.backgroundColor = '#272727';
+});
+
+
+const colorPen = document.querySelector('.colorPen')
+colorPen.addEventListener('change',()=>{
+    draw(colorPen.value);
+    randomRGBbutton.style.backgroundColor = '#272727';
+    eraserButton.style.backgroundColor = '#272727';
+    eraserButton.style.color = 'rgb(62, 166, 255)';
+    randomRGBbutton.style.color = 'rgb(62, 166, 255)';
+});
 
 
 // To Clear the Screen
