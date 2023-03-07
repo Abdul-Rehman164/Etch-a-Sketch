@@ -1,17 +1,39 @@
 const sketchPad = document.querySelector('.container');
+let border = true;
 
 function getDivs(){ //getting the divs
 
+    //remove the previous grid
     while(sketchPad.firstChild){
         sketchPad.removeChild(sketchPad.firstChild)
     }
 
+    //create the grid
     for (let i = 0;i < (NoOfGrids*NoOfGrids);i++){ //noOfGrids * noOfGrids one for row and one for column
+
         const div = document.createElement('div');
-        div.classList.add('grid','border');
+        if(!border) div.classList.add('grid');
+        else div.classList.add('grid','border');
         sketchPad.appendChild(div);
     }
     sketchPad.setAttribute('style',`grid-template-columns:repeat(${NoOfGrids},1fr); grid-template-rows:repeat(${NoOfGrids},1fr);`);
+
+
+        // Clear the grid
+    const toggleGridButton = document.querySelector('.toggleBorder');
+    const divs = document.querySelectorAll('.grid');
+    toggleGridButton.addEventListener('click',()=>{
+        divs.forEach(div=>{
+            if (div.classList.contains('border')){
+                div.classList.remove('border')
+                border = false;
+            }else{
+                div.classList.add('border')
+                border = true;
+            }
+        });
+    });
+
 
 }
 
@@ -76,12 +98,15 @@ pencilButton.addEventListener('click',() => {
 // To Clear the Screen
 const clearButton = document.querySelector('.clearScreen')
 clearButton.addEventListener('click',()=>{
-        getDivs();
+        const boxes = document.querySelectorAll('.grid');
+        boxes.forEach(box=>{
+            box.style.backgroundColor = 'white';
+        });
     });
 
-    
 
-
-let NoOfGrids = 20; // default number
-getDivs(); //default genrated divs
+let NoOfGrids = 20; 
 getNumber();
+getDivs(); 
+
+
