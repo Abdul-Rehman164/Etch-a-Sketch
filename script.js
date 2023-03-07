@@ -33,9 +33,10 @@ function getDivs(){ //getting the divs
             }
         });
     });
+    if(randomRGBbutton.style.backgroundColor === 'skyblue') draw(getRandomRGB);
+    if(pencilButton.style.backgroundColor === 'skyblue') draw('black');
 
-
-}
+}   
 
 function getNumber(){  //getting the number of squares from the user
 
@@ -85,6 +86,8 @@ function draw(color){
 const randomRGBbutton = document.querySelector('.randomRGB');
 randomRGBbutton.addEventListener('click',()=>{
         draw(getRandomRGB);
+        randomRGBbutton.style.backgroundColor = 'skyblue';
+        pencilButton.style.backgroundColor = 'white';
     });
 
 
@@ -92,6 +95,8 @@ randomRGBbutton.addEventListener('click',()=>{
 const pencilButton = document.querySelector('.pencil');
 pencilButton.addEventListener('click',() => {
         draw('black');
+        pencilButton.style.backgroundColor = 'skyblue';
+        randomRGBbutton.style.backgroundColor = 'white';
     });
 
 
