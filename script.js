@@ -123,6 +123,7 @@ clearButton.addEventListener('click',()=>{
         boxes.forEach(box=>{
             box.style.backgroundColor = 'white';
         });
+        
     });
 
 

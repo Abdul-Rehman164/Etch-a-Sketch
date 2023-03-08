@@ -64,9 +64,6 @@ button{
     border-radius: 5px;
 }
 
-.rangeContainer{
-    
-}
 .range{
     width: 250px;
     height: 3px;
@@ -90,6 +87,9 @@ button{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.grid{
+    cursor: url(pencil.png) 10 25,auto;
 }
 
 
